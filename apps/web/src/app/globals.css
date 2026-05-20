@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FAFAF8;
+    --surface: #FFFFFF;
+    --border: #E5E7EB;
+    --text-primary: #1A1C2E;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
+    --blue: #A8C8E8;
+    --blue-dark: #6D8FB0;
+    --green: #A8D8B0;
+    --green-dark: #5A9468;
+    --yellow: #F2E8A8;
+    --red: #E8B0A8;
+  }
+
+  html {
+    background-color: #FAFAF8;
+    color: #1A1C2E;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #FAFAF8;
+    color: #1A1C2E;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
