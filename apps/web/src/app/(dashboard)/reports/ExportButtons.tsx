@@ -78,7 +78,7 @@ async function exportTransactionsCSV(fromDate: string, toDate: string) {
     'Data/Hora', 'Tipo', 'Produto', 'SKU', 'Unidade', 'Quantidade',
     'Custo unit.', 'Valor total', 'Depósito', 'Responsável', 'Referência', 'Obs.', 'Via QR',
   ]
-  const rows = (data as TransactionRow[] ?? []).map(tx => [
+  const rows = ((data as any[]) ?? []).map((tx: any) => [
     formatDate(tx.created_at),
     TYPE_MAP[tx.type] ?? tx.type,
     tx.products?.name ?? '',
@@ -114,7 +114,7 @@ async function exportInventoryCSV() {
     'Disponível', 'Estoque mín.', 'Status', 'Custo unit.', 'Valor total', 'Atualizado em',
   ]
   const now = new Date().toISOString().slice(0, 10)
-  const rows = (data as InventoryRow[] ?? []).map(item => {
+  const rows = ((data as any[]) ?? []).map((item: any) => {
     const qty   = item.quantity ?? 0
     const res   = item.reserved_qty ?? 0
     const min   = item.products?.min_stock ?? 0
@@ -175,7 +175,7 @@ async function exportTransactionsPDF(fromDate: string, toDate: string) {
   doc.text(`Período: ${fromDate} a ${toDate}`, 14, 28)
   doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 14, 33)
 
-  const tableRows = (data as TransactionRow[] ?? []).map(tx => [
+  const tableRows = ((data as any[]) ?? []).map((tx: any) => [
     formatDate(tx.created_at),
     TYPE_MAP[tx.type] ?? tx.type,
     tx.products?.name ?? '—',

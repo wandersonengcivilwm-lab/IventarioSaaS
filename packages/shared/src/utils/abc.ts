@@ -32,7 +32,7 @@ export function computeABCCurve(transactions: ABCInput[]): ABCResult[] {
     })
   }
 
-  const sorted = [...valueMap.entries()]
+  const sorted = Array.from(valueMap.entries())
     .map(([id, { name, value }]) => ({ product_id: id, product_name: name, total_value: value }))
     .sort((a, b) => b.total_value - a.total_value)
 
