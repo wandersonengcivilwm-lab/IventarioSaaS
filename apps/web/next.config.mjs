@@ -10,6 +10,17 @@ const nextConfig = {
       },
     ],
   },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // jsPDF só funciona no browser — previne erro de build no servidor
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        jspdf: false,
+        'jspdf-autotable': false,
+      }
+    }
+    return config
+  },
 }
 
 export default nextConfig

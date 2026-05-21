@@ -1,9 +1,15 @@
 import { Suspense } from 'react'
+import dynamic from 'next/dynamic'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { ExportButtons } from './ExportButtons'
 import { can } from '@inventory-saas/shared'
 import type { UserRole } from '@inventory-saas/shared'
+
+// jsPDF só funciona no browser — carregamento lazy sem SSR
+const ExportButtons = dynamic(
+  () => import('./ExportButtons').then(m => m.ExportButtons),
+  { ssr: false, loading: () => <p className="text-sm text-[#9CA3AF]">Carregando opções de exportação...</p> }
+)
 
 interface ReportsPageProps {
   searchParams: { from?: string; to?: string }
